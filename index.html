@@ -357,23 +357,31 @@
   <footer>
     <div class="wrap"><span>© <span id="year"></span> <strong></strong> · DMC Design Services LLC · Design & Fabrication Studio</span><span>Design. Engineer. Build.</span></div>
   </footer>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("contactForm").addEventListener("submit", function (event) {
-      event.preventDefault();
-      const emailTo = this.dataset.email;
-      if (!emailTo || emailTo === "dmclaserllc@gmail.com") {
-        alert("Before publishing, add Joe's business email in the contact form settings in index.html.");
-        return;
-      }
-      const data = new FormData(this);
-      const subject = encodeURIComponent("Project inquiry from " + data.get("name"));
-      const body = encodeURIComponent(
-        "Name: " + data.get("name") + "\nEmail: " + data.get("email") +
-        "\n\nProject details:\n" + data.get("message")
-      );
-      window.location.href = "mailto:" + emailTo + "?subject=" + subject + "&body=" + body;
-    });
-  </script>
+ 
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const emailTo = "dmclaserllc@gmail.com";
+    const data = new FormData(this);
+
+    const subject = encodeURIComponent(
+      "Project inquiry from " + data.get("name")
+    );
+
+    const body = encodeURIComponent(
+      "Name: " + data.get("name") +
+      "\nEmail: " + data.get("email") +
+      "\n\nProject details:\n" + data.get("message")
+    );
+
+    window.location.href =
+      "mailto:" + emailTo +
+      "?subject=" + subject +
+      "&body=" + body;
+  });
+</script>
 </body>
 </html>
